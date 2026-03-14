@@ -24,14 +24,16 @@ namespace Modul3_NIM
 
         private void Convert_Click(object sender, EventArgs e)
         {
-            private void btnConvert_Click(object sender, EventArgs e)
+        private void btnConvert_Click(object sender, EventArgs e)
         {
+            // 1. Validasi: Cek apakah ComboBox sudah dipilih
             if (comboBoxAsal.SelectedItem == null || comboBoxTujuan.SelectedItem == null)
             {
                 MessageBox.Show("Pilih satuan terlebih dahulu!");
                 return;
             }
 
+            // 2. Validasi: Cek apakah input angka valid
             if (string.IsNullOrWhiteSpace(txtNilaiAwal.Text) || !double.TryParse(txtNilaiAwal.Text, out double inputSuhu))
             {
                 MessageBox.Show("Masukkan angka yang valid!");
@@ -41,6 +43,8 @@ namespace Modul3_NIM
             string asal = comboBoxAsal.SelectedItem.ToString();
             string tujuan = comboBoxTujuan.SelectedItem.ToString();
             double hasil = 0;
+
+            // 3. Logika Konversi (Standarisasi ke Celcius dulu agar lebih mudah)
             double celcius = 0;
 
             // Konversi dari Asal ke Celcius
@@ -61,9 +65,8 @@ namespace Modul3_NIM
                 case "Reamur": hasil = celcius * 4 / 5; break;
             }
 
-            // Menampilkan hasil
+            // Tampilkan hasil
             txtNilaiAkhir.Text = hasil.ToString("N2"); // N2 untuk 2 angka di belakang koma
         }
-    }
     }
 }
